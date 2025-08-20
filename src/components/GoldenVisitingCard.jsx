@@ -58,20 +58,8 @@ const GoldenVisitingCard = () => {
       alpha: true,
       powerPreference: "high-performance"
     });
-
-    // Responsive sizing for mobile to prevent horizontal overflow
-    const baseW = 480;
-    const baseH = 300;
-    const setRendererSize = () => {
-      const parent = mountRef.current;
-      const available = parent ? parent.clientWidth : baseW;
-      const width = Math.min(baseW, Math.max(280, available));
-      const height = Math.round(width * (baseH / baseW));
-      renderer.setSize(width, height);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-    };
-    setRendererSize();
+    
+    renderer.setSize(480, 300); // Increased from 400x250 to 480x300 (20% bigger)
     renderer.setClearColor(0x000000, 0);
     renderer.shadowMap.enabled = false;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));

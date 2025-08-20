@@ -17,9 +17,9 @@ export function ScrollLaptopScene({ scrollY, viewportHeight, onPhaseChange }) {
 	// 0.33-0.66: zoom in towards screen
 	// 0.66-1.00: "enter screen" (simulate browser zoom into DOM)
 	const phases = useMemo(() => ({
-		rotateEnd: 0.53,
-		zoomEnd: 0.96,
-		enterEnd: 1.09,
+		rotateEnd: 0.20,
+		zoomEnd: 0.36,
+		enterEnd: 0.51,
 	}), [])
 
 	useFrame(() => {
