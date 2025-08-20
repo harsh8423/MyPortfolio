@@ -52,14 +52,26 @@ const GoldenVisitingCard = () => {
 
     // Scene setup
     const scene = new Scene();
-    const camera = new PerspectiveCamera(45, 480 / 300, 0.1, 1000); // Increased size by 20%
+    const camera = new PerspectiveCamera(45, 480 / 300, 0.1, 1000); // aspect will be updated after sizing
     const renderer = new WebGLRenderer({ 
       antialias: false,
       alpha: true,
       powerPreference: "high-performance"
     });
-    
-    renderer.setSize(480, 300); // Increased from 400x250 to 480x300 (20% bigger)
+
+    // Responsive sizing for mobile to prevent horizontal overflow
+    const baseW = 480;
+    const baseH = 300;
+    const setRendererSize = () => {
+      const parent = mountRef.current;
+      const available = parent ? parent.clientWidth : baseW;
+      const width = Math.min(baseW, Math.max(280, available));
+      const height = Math.round(width * (baseH / baseW));
+      renderer.setSize(width, height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    };
+    setRendererSize();
     renderer.setClearColor(0x000000, 0);
     renderer.shadowMap.enabled = false;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -69,6 +81,12 @@ const GoldenVisitingCard = () => {
     cameraRef.current = camera;
     
     mountRef.current.appendChild(renderer.domElement);
+
+    // Resize handling
+    const onResize = () => setRendererSize();
+    const ro = new ResizeObserver(onResize);
+    if (mountRef.current) ro.observe(mountRef.current);
+    window.addEventListener('resize', onResize);
 
     // Camera position
     camera.position.z = 6;
@@ -465,12 +483,8 @@ const GoldenVisitingCard = () => {
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }
-      canvas.removeEventListener('mousedown', handleMouseDown);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mouseup', handleMouseUp);
-      canvas.removeEventListener('click', handleClick);
-      canvas.removeEventListener('mouseenter', () => setIsHovered(true));
-      canvas.removeEventListener('mouseleave', () => setIsHovered(false));
+      try { ro.disconnect(); } catch {}
+      window.removeEventListener('resize', onResize);
       
       renderer.dispose();
       scene.clear();
@@ -500,7 +514,7 @@ const GoldenVisitingCard = () => {
             filter: 'drop-shadow(0 25px 35px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 20px rgba(0, 0, 0, 0.3))'
           }}
         >
-          <div ref={mountRef} className="rounded-2xl overflow-hidden" />
+          <div ref={mountRef} className="rounded-2xl overflow-hidden w-full max-w-[480px]" />
           
           {/* Instruction text */}
           <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-zinc-400 whitespace-nowrap">

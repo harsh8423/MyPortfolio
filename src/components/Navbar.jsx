@@ -62,7 +62,7 @@ export function Navbar() {
 		<>
 			{/* Main Navbar - Fixed always on top */}
 			<motion.nav
-				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 overflow-x-hidden ${
 					scrolled 
 						? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-2xl' 
 						: 'bg-black/60 backdrop-blur-md border-b border-white/10'
