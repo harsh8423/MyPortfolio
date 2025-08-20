@@ -3,7 +3,7 @@ import GoldenVisitingCard from '../components/GoldenVisitingCard.jsx'
 
 export function Hero() {
 	return (
-		<div id="home" className="h-full flex flex-col lg:flex-row items-center justify-center relative pt-24 sm:pt-24 lg:pt-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+		<div id="home" className="h-full flex flex-col lg:flex-row items-center justify-center relative pt-28 sm:pt-24 lg:pt-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
 			{/* Text Content - Shifted more towards center-right */}
 			<div className="w-full lg:w-3/5 lg:pr-12 mb-8 lg:mb-0 text-center lg:text-left lg:ml-8">
 				<motion.h1
