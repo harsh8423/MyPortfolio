@@ -22,7 +22,7 @@ const projects = [
 		title: 'AICTE Portal Automation',
 		desc: 'Automated registration & verification with OCR, digital signatures, and audit-ready logs.',
 		details: 'Automated the entire institution registration and verification pipeline for AICTE, bridging the gap between colleges and the verification committee. Built a log manager chatbot, used OCR for document checks, and integrated digital signature verification for authenticity. The system streamlined manual work, saving time and reducing human error.',
-		link: 'https://github.com/AyushKatochh',
+		link: 'https://github.com/AyushKatochh/Portal-Automation',
 		tags: ['Automation', 'OCR', 'AI', 'Chatbot'],
 		accent: ['from-blue-400/20', 'to-violet-500/10']
 	},
