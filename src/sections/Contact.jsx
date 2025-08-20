@@ -1,9 +1,11 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaMapMarkerAlt, FaPhone } from 'react-icons/fa'
+import emailjs from '@emailjs/browser'
 
 export function Contact() {
 	const containerRef = useRef(null)
+	const formRef = useRef(null)
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -11,6 +13,7 @@ export function Contact() {
 		message: ''
 	})
 	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [feedback, setFeedback] = useState(null)
 	
 	// Scroll-based animations
 	const { scrollYProgress } = useScroll({
@@ -32,14 +35,32 @@ export function Contact() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setIsSubmitting(true)
-		
-		// Simulate form submission
-		await new Promise(resolve => setTimeout(resolve, 2000))
-		
-		setIsSubmitting(false)
-		// Reset form
-		setFormData({ name: '', email: '', subject: '', message: '' })
-		alert('Thank you for your message! I\'ll get back to you soon.')
+		setFeedback(null)
+
+		const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+		const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+		const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+		try {
+			await emailjs.send(
+				serviceId,
+				templateId,
+				{
+					from_name: formData.name,
+					from_email: formData.email,
+					subject: formData.subject,
+					message: formData.message,
+				},
+				{ publicKey }
+			)
+			setFeedback({ type: 'success', message: "Thanks! Your message has been sent." })
+			setFormData({ name: '', email: '', subject: '', message: '' })
+		} catch (err) {
+			console.error(err)
+			setFeedback({ type: 'error', message: "Something went wrong. Please try again or email me directly." })
+		} finally {
+			setIsSubmitting(false)
+		}
 	}
 
 	const socialLinks = [
@@ -67,7 +88,7 @@ export function Contact() {
 	]
 
 	return (
-		<div ref={containerRef} className="text-center">
+		<div id="contact" ref={containerRef} className="text-center">
 			<motion.div 
 				className="mb-16"
 				style={{ scale, opacity, y }}
@@ -90,7 +111,7 @@ export function Contact() {
 				>
 					<h3 className="text-2xl font-semibold text-white mb-6">Send me a message</h3>
 					
-					<form onSubmit={handleSubmit} className="space-y-6">
+					<form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
 						<div className="grid md:grid-cols-2 gap-4">
 							<div>
 								<label htmlFor="name" className="block text-sm font-medium text-zinc-300 mb-2 text-left">
@@ -155,6 +176,12 @@ export function Contact() {
 								placeholder="Tell me about your project..."
 							/>
 						</div>
+						
+						{feedback && (
+							<div className={`text-sm ${feedback.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+								{feedback.message}
+							</div>
+						)}
 						
 						<motion.button
 							type="submit"
