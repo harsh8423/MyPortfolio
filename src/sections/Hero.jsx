@@ -10,7 +10,7 @@ export function Hero() {
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8 }}
-					className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight leading-tight"
+					className="text-2xl sm:text-6xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight leading-tight"
 				>
 					Build standout products with Generative AI & Full‑Stack Craft
 				</motion.h1>

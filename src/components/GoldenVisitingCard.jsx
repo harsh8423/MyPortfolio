@@ -27,6 +27,11 @@ const GoldenVisitingCard = () => {
   const [showModal, setShowModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [cardOpacity, setCardOpacity] = useState(1);
+  
+  // Set initial opacity immediately
+  useEffect(() => {
+    setCardOpacity(1);
+  }, []);
 
   useEffect(() => {
     // Scroll effect for card opacity
@@ -38,10 +43,14 @@ const GoldenVisitingCard = () => {
         // Calculate opacity based on scroll position within hero section
         const opacity = Math.max(0, 1 - (scrollY / heroHeight) * 1.5);
         setCardOpacity(opacity);
+        console.log('Scroll opacity:', opacity, 'scrollY:', scrollY, 'heroHeight:', heroHeight);
       } else {
         setCardOpacity(0);
       }
     };
+    
+    // Ensure card is visible on initial load
+    setCardOpacity(1);
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -52,14 +61,14 @@ const GoldenVisitingCard = () => {
 
     // Scene setup
     const scene = new Scene();
-    const camera = new PerspectiveCamera(45, 480 / 300, 0.1, 1000); // aspect will be updated after sizing
+    const camera = new PerspectiveCamera(45, 1.6, 0.1, 1000); // aspect will be updated after sizing
     const renderer = new WebGLRenderer({ 
       antialias: false,
       alpha: true,
       powerPreference: "high-performance"
     });
     
-    renderer.setSize(480, 300); // Increased from 400x250 to 480x300 (20% bigger)
+    // Initial size will be set by setRendererSize() after mount
     renderer.setClearColor(0x000000, 0);
     renderer.shadowMap.enabled = false;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -71,10 +80,39 @@ const GoldenVisitingCard = () => {
     mountRef.current.appendChild(renderer.domElement);
 
     // Resize handling
+    const setRendererSize = () => {
+      if (mountRef.current && renderer) {
+        const isMobile = window.innerWidth < 768;
+        
+        // Force specific sizes based on screen size
+        let finalWidth, finalHeight;
+        
+        if (isMobile) {
+          // Mobile: 320x200
+          finalWidth = 320;
+          finalHeight = 200;
+        } else {
+          // Desktop: 480x300 (original size)
+          finalWidth = 480;
+          finalHeight = 300;
+        }
+        
+        renderer.setSize(finalWidth, finalHeight);
+        camera.aspect = finalWidth / finalHeight;
+        camera.updateProjectionMatrix();
+        
+        // Debug logging
+        console.log('Renderer size set:', finalWidth, finalHeight, 'Mobile:', isMobile);
+      }
+    };
+    
     const onResize = () => setRendererSize();
     const ro = new ResizeObserver(onResize);
     if (mountRef.current) ro.observe(mountRef.current);
     window.addEventListener('resize', onResize);
+    
+    // Initial size setup with small delay to ensure DOM is ready
+    setTimeout(() => setRendererSize(), 100);
 
     // Camera position
     camera.position.z = 6;
@@ -375,6 +413,9 @@ const GoldenVisitingCard = () => {
     const card = new Mesh(cardGeometry, materials);
     cardRef.current = card;
     scene.add(card);
+    
+    // Debug logging
+    console.log('Card added to scene, card position:', card.position);
 
     // Mouse interaction
     const handleMouseDown = (event) => {
@@ -459,6 +500,11 @@ const GoldenVisitingCard = () => {
       }
 
       renderer.render(scene, camera);
+      
+      // Debug logging (only log occasionally to avoid spam)
+      if (Math.random() < 0.01) {
+        console.log('Animation frame rendered, card visible:', card && card.visible);
+      }
     };
 
     animate();
@@ -502,7 +548,7 @@ const GoldenVisitingCard = () => {
             filter: 'drop-shadow(0 25px 35px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 20px rgba(0, 0, 0, 0.3))'
           }}
         >
-          <div ref={mountRef} className="rounded-2xl overflow-hidden w-full max-w-[480px]" />
+          <div ref={mountRef} className="rounded-2xl overflow-hidden w-full max-w-[320px] sm:max-w-[480px] min-h-[200px] sm:min-h-[300px] h-[200px] sm:h-[300px]" />
           
           {/* Instruction text */}
           <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-zinc-400 whitespace-nowrap">
