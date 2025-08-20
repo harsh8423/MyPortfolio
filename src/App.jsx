@@ -50,7 +50,7 @@ export default function App() {
 							</Suspense>
 						</Canvas>
 						<div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.15),rgba(0,0,0,0))]" />
-						<div className="absolute inset-0">
+						<div className="absolute left-0 right-0 bottom-0 top-16 lg:top-20">
 							<Hero />
 						</div>
 					</div>
