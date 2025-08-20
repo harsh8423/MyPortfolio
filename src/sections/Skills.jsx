@@ -12,7 +12,6 @@ const skillCategories = [
 			{ name: 'React' },
 			{ name: 'Tailwind CSS' },
 			{ name: 'Three.js' },
-			{ name: 'Framer Motion' },
 			{ name: 'Vite' },
 			{ name: 'Next.js' }
 		]
@@ -65,7 +64,6 @@ const skillCategories = [
 			{ name: 'MongoDB' },
 			{ name: 'Redis' },
 			{ name: 'Docker' },
-			{ name: 'CI/CD' }
 		]
 	},
 	{
