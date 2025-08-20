@@ -13,13 +13,13 @@ export function ScrollLaptopScene({ scrollY, viewportHeight, onPhaseChange }) {
 	const { camera } = useThree()
 
 	// Define scroll phases as fractions of the total viewport height
-	// 0.00-0.33: side view -> rotate to front
-	// 0.33-0.66: zoom in towards screen
-	// 0.66-1.00: "enter screen" (simulate browser zoom into DOM)
+	// 0.00-0.15: side view -> rotate to front
+	// 0.15-0.30: zoom in towards screen
+	// 0.30-0.45: "enter screen" (simulate browser zoom into DOM)
 	const phases = useMemo(() => ({
-		rotateEnd: 0.20,
-		zoomEnd: 0.36,
-		enterEnd: 0.51,
+		rotateEnd: 0.15,
+		zoomEnd: 0.30,
+		enterEnd: 0.45,
 	}), [])
 
 	useFrame(() => {
