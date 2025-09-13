@@ -33,28 +33,28 @@ const GoldenVisitingCard = () => {
     setCardOpacity(1);
   }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
     // Scroll effect for card opacity
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const heroHeight = window.innerHeight * 2; // Hero section is 200vh
+    // const handleScroll = () => {
+    //   const scrollY = window.scrollY;
+    //   const heroHeight = window.innerHeight * 2; // Hero section is 200vh
       
-      if (scrollY <= heroHeight) {
-        // Calculate opacity based on scroll position within hero section
-        const opacity = Math.max(0, 1 - (scrollY / heroHeight) * 1.5);
-        setCardOpacity(opacity);
-        console.log('Scroll opacity:', opacity, 'scrollY:', scrollY, 'heroHeight:', heroHeight);
-      } else {
-        setCardOpacity(0);
-      }
-    };
+    //   if (scrollY <= heroHeight) {
+    //     // Calculate opacity based on scroll position within hero section
+    //     const opacity = Math.max(0, 1 - (scrollY / heroHeight) * 1.5);
+    //     setCardOpacity(opacity);
+    //     console.log('Scroll opacity:', opacity, 'scrollY:', scrollY, 'heroHeight:', heroHeight);
+    //   } else {
+    //     setCardOpacity(0);
+    //   }
+    // };
     
-    // Ensure card is visible on initial load
-    setCardOpacity(1);
+  //   // Ensure card is visible on initial load
+  //   setCardOpacity(1);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
   useEffect(() => {
     if (!mountRef.current) return;

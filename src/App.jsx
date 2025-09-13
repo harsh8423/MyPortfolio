@@ -10,7 +10,7 @@ import { Education } from './sections/Education.jsx'
 import { Contact } from './sections/Contact.jsx'
 import { Navbar } from './components/Navbar.jsx'
 import { Footer } from './components/Footer.jsx'
-import { ScrollLaptopScene } from './three/ScrollLaptopScene.jsx'
+// import { ScrollLaptopScene } from './three/ScrollLaptopScene.jsx'
 import { StorySection } from './components/StorySection.jsx'
 import { CustomCursor } from './components/CustomCursor.jsx'
 
@@ -18,21 +18,21 @@ export default function App() {
 	const scrollY = useRef(0)
 	const [vh, setVh] = useState(0)
 
-	useEffect(() => {
-		function onScroll() {
-			scrollY.current = window.scrollY
-		}
-		function onResize() {
-			setVh(window.innerHeight)
-		}
-		onResize()
-		window.addEventListener('scroll', onScroll, { passive: true })
-		window.addEventListener('resize', onResize)
-		return () => {
-			window.removeEventListener('scroll', onScroll)
-			window.removeEventListener('resize', onResize)
-		}
-	}, [])
+	// useEffect(() => {
+	// 	function onScroll() {
+	// 		scrollY.current = window.scrollY
+	// 	}
+	// 	function onResize() {
+	// 		setVh(window.innerHeight)
+	// 	}
+	// 	onResize()
+	// 	window.addEventListener('scroll', onScroll, { passive: true })
+	// 	window.addEventListener('resize', onResize)
+	// 	return () => {
+	// 		window.removeEventListener('scroll', onScroll)
+	// 		window.removeEventListener('resize', onResize)
+	// 	}
+	// }, [])
 
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black">
@@ -42,13 +42,13 @@ export default function App() {
 				{/* Chapter 0: The Hero - 3D Laptop Story */}
 				<section className="relative h-[200vh] w-full">
 					<div className="sticky top-0 h-screen w-full">
-						<Canvas camera={{ position: [0, 0.2, 4], fov: 50 }}>
+						{/* <Canvas camera={{ position: [0, 0.2, 4], fov: 50 }}>
 							<ambientLight intensity={0.8} />
 							<directionalLight position={[2, 3, 4]} intensity={1.2} />
 							<Suspense fallback={null}>
 								<ScrollLaptopScene scrollY={scrollY} viewportHeight={vh || 1} />
 							</Suspense>
-						</Canvas>
+						</Canvas> */}
 						<div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.15),rgba(0,0,0,0))]" />
 						<div className="absolute left-0 right-0 bottom-0 top-16 lg:top-20">
 							<Hero />
