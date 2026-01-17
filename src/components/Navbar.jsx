@@ -9,7 +9,7 @@ const navItems = [
 	{ id: 'skills', label: 'Skills', icon: FaGraduationCap, href: '#skills' },
 	{ id: 'projects', label: 'Projects', icon: FaFolder, href: '#projects' },
 	{ id: 'education', label: 'Education', icon: FaGraduationCap, href: '#education' },
-	{ id: 'testimonials', label: 'Testimonials', icon: FaStar, href: '#testimonials' },
+	// { id: 'testimonials', label: 'Testimonials', icon: FaStar, href: '#testimonials' },
 	{ id: 'contact', label: 'Contact', icon: FaEnvelope, href: '#contact' }
 ]
 

@@ -686,7 +686,7 @@ const GoldenVisitingCard = () => {
                   </div>
                   <div>
                     <p className="text-sm opacity-80">Website</p>
-                    <p className="text-white font-medium">harshtiwari.dev</p>
+                    <p className="text-white font-medium">hashtagharsh-portfolio.vercel.app</p>
                   </div>
                 </div>
                 

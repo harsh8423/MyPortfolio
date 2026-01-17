@@ -40,7 +40,7 @@ export default function App() {
 			<Navbar />
 			<main className="flex-1">
 				{/* Chapter 0: The Hero - 3D Laptop Story */}
-				<section className="relative h-[200vh] w-full">
+				<section className="relative w-full">
 					<div className="sticky top-0 h-screen w-full">
 						{/* <Canvas camera={{ position: [0, 0.2, 4], fov: 50 }}>
 							<ambientLight intensity={0.8} />
@@ -57,37 +57,37 @@ export default function App() {
 				</section>
 
 				{/* Chapter 2: The Spark - About Me Story */}
-				<StorySection id="about" chapter={1} totalChapters={7} alignTop>
+				<StorySection id="about" chapter={1} totalChapters={6} alignTop>
 					<AboutMe />
 				</StorySection>
 
 				{/* Chapter 3: The Services - What I Offer */}
-				<StorySection id="services" chapter={2} totalChapters={7}>
+				<StorySection id="services" chapter={2} totalChapters={6}>
 					<Services />
 				</StorySection>
 
 				{/* Chapter 4: The Skills - My Expertise */}
-				<StorySection id="skills" chapter={3} totalChapters={7}>
+				<StorySection id="skills" chapter={3} totalChapters={6}>
 					<Skills />
 				</StorySection>
 
 				{/* Chapter 5: The Projects - My Journey */}
-				<StorySection id="projects" chapter={4} totalChapters={7}>
+				<StorySection id="projects" chapter={4} totalChapters={6}>
 					<Projects />
 				</StorySection>
 
 				{/* Chapter 6: The Education - My Foundation */}
-				<StorySection id="education" chapter={5} totalChapters={7}>
+				<StorySection id="education" chapter={5} totalChapters={6}>
 					<Education />
 				</StorySection>
 
 				{/* Chapter 7: The Testimonials - Client Stories */}
-				<StorySection id="testimonials" chapter={6} totalChapters={7}>
+				{/*<StorySection id="testimonials" chapter={6} totalChapters={7}>
 					<Testimonials />
-				</StorySection>
+				</StorySection>*/}
 
 				{/* Chapter 8: The Contact - Let's Connect */}
-				<StorySection id="contact" chapter={7} totalChapters={7}>
+				<StorySection id="contact" chapter={6} totalChapters={6}>
 					<Contact />
 				</StorySection>
 			</main>

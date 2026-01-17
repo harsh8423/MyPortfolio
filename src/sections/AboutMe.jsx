@@ -6,36 +6,37 @@ const challenges = [
 	{
 		icon: FaBrain,
 		title: "The Manual Process Monster",
-		description: "I've watched teams waste hours on repetitive tasks that could be automated. It breaks my heart to see human creativity trapped in mindless workflows.",
-		solution: "I build AI-powered automation tools that turn hours into minutes, letting people focus on what they do best.",
+		description: "I’ve watched teams waste hours on repetitive tasks that should never require human effort. It’s painful to see creativity and focus drained by mindless manual work.",
+		solution: "I build AI-powered automation systems that remove repetitive work and let people focus on decisions, creativity, and impact.",
 		weapons: ["Python", "OpenAI API", "LangChain", "RAG Systems", "MLOps"],
 		color: "from-purple-500 to-pink-500"
 	},
 	{
-		icon: FaUsers,
-		title: "The Collaboration Chaos",
-		description: "Finding the right teammates for projects used to be like searching for a needle in a haystack. I've been there, frustrated and alone with great ideas.",
-		solution: "I design platforms that connect creators, developers, and dreamers, turning solo struggles into team triumphs.",
-		weapons: ["React", "Node.js", "WebRTC", "Real-time DB", "Social APIs"],
-		color: "from-blue-500 to-cyan-500"
+		icon: FaClock,
+		title: "The Availability Gap",
+		description: "Small businesses kept losing leads and customers—not because they lacked skill, but because they couldn’t be available all the time.",
+		solution: "So, I built AI-powered sales and customer support copilot that handles conversations on demand and keeps businesses responsive without increasing their workforce.",
+		weapons: ["AI Agents", "Workflow Engine", "Omnichannel Messaging", "Voice AI", "Automation"],
+		color: "from-indigo-500 to-purple-500"
 	},
 	{
-		icon: FaClock,
-		title: "The Time Trap",
-		description: "It was very time-consuming to find the right projects and clients on freelancing platforms. I kept refreshing and scrolling, only to miss out on opportunities that matched my skills.",
-		solution: "So, I built a Telegram bot that automatically sends me relevant project posts the moment they’re published—filtered according to my preferences. No more wasted time, just instant access to the work I want.",
-		weapons: ["Python", "APIs & Web Scraping", "Automation", "Telegram Bot API"],
-		color: "from-green-500 to-emerald-500"
+		icon: FaBrain,
+		title: "The Orchestration Overload",
+		description: "Teams were using powerful AI tools in isolation—one for research, another for writing, another for scheduling. The real challenge wasn’t intelligence, it was orchestration.",
+		solution: "I built a multimodal AI agent ecosystem where specialized agents collaborate to research, analyze, generate, and execute tasks end-to-end.",
+		weapons: ["Python", "FastAPI", "Multiple LLMs", "RAG Systems", "Redis", "MongoDB"],
+		color: "from-purple-500 to-pink-500"
 	},
 	{
 		icon: FaRocket,
-		title: "The Innovation Gap",
-		description: "People often find stock trading boring, confusing, and time-consuming. Many give up because of impatience or financial pressure. I saw this gap as an opportunity to make trading engaging and educational",
-		solution: "I built a gamified version of the stock market, where people can not only learn trading strategies but also earn rewards by joining contests.",
-		weapons: ["React Native", "WebSockets", "Real-time APIs", "Data Integration"],
+		title: "The Demo Bottleneck",
+		description: "Inbound sales slowed down because live demos didn’t scale. High-intent leads waited for calendars to align, and momentum was lost before real conversations began.",
+		solution: "So, I built a shareable AI demo assistant that delivers interactive, voice-driven product demos on demand—qualifying leads and triggering follow-ups automatically.",
+		weapons: ["Node.js", "Python", "LiveKit", "WebRTC", "STT/TTS", "LLMs", "RAG"],
 		color: "from-orange-500 to-red-500"
 	}
-]
+];
+
 
 export function AboutMe() {
 	const containerRef = useRef(null)

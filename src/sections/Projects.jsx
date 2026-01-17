@@ -3,6 +3,41 @@ import { AnimatePresence, motion, useTransform, useScroll } from 'framer-motion'
 
 const projects = [
 	{
+		title: 'CustArea – AI-Native Sales & Customer Support Platform',
+		desc: 'On-demand AI copilot for sales and customer support with workflows, campaigns, and voice agents.',
+		details: 'CustArea is a unified AI-powered platform that helps small businesses manage sales and customer support on demand. It combines an omnichannel inbox, context-aware AI agents, advanced workflow automation, AI-driven campaigns, and voice agents to handle conversations anytime—during peak hours or off-hours—without increasing workforce. Designed to keep businesses responsive, organized, and in control.',
+		link: 'https://custarea.com',
+		tags: ['AI', 'Automation', 'Workflows', 'Voice AI'],
+		accent: ['from-indigo-400/20', 'to-purple-500/10'],
+		featured: true
+	},
+	{
+		title: 'Multimodal AI Agent Ecosystem',
+		desc: 'Multi-agent system for end-to-end content research, creation, analysis, and publishing.',
+		details: 'Built an ecosystem of 8+ specialized AI agents—including research, planner, analyst, asset manager, and orchestrator—capable of executing complete social media workflows. The system integrates 30+ external tools for competitor analysis, media scraping, trend detection, content generation, scheduling, and publishing. Designed with a FastAPI backend, Redis-based orchestration, MongoDB storage, and multiple LLMs for coordinated agent execution.',
+		link: 'https://github.com/harsh8423/Multimodal_Agent',
+		tags: ['AI Agents', 'RAG', 'FastAPI', 'Redis', 'LLMs'],
+		accent: ['from-purple-400/20', 'to-pink-500/10'],
+		featured: true
+	},
+	{
+		title: 'Shareable AI Demo Assistant for Inbound Sales',
+		desc: 'Link-based AI demo system with voice-driven walkthroughs and automated lead qualification.',
+		details: 'Developed a shareable AI-powered demo assistant that replaces live intro demos with interactive voice and text-driven product walkthroughs. Built a real-time conversational pipeline using LiveKit and WebRTC (audio input → STT → LLM → RAG → UI sync). Added analytics and follow-up automation to capture demo transcripts, intent signals, and engagement metrics—enabling callbacks and follow-ups without human intervention.',
+		link: 'https://github.com/harsh8423/live_demo_avatar',
+		tags: ['AI', 'WebRTC', 'LiveKit', 'STT/TTS', 'RAG'],
+		accent: ['from-orange-400/20', 'to-red-500/10'],
+		featured: true
+	},
+	{
+		title: 'AI-Driven Web App Builder',
+		desc: 'LLM-guided platform to generate and deploy production-ready web applications.',
+		details: 'Engineered a production-grade AI web app builder inspired by lovable.dev and bolt.new, capable of generating full-stack applications using LLM-guided templates and code generation. Designed scalable infrastructure with Dockerized per-app containers, Kubernetes orchestration (EKS), and subdomain-based routing. Deployed on AWS (EKS, ECR, S3, ALB, EC2) with WebSocket-based live code rendering.',
+		link: 'https://github.com/harsh8423/AI_Web_App_Builder',
+		tags: ['LLMs', 'Next.js', 'Docker', 'Kubernetes', 'AWS'],
+		accent: ['from-blue-400/20', 'to-cyan-500/10']
+	},
+	{
 		title: 'Seekure – AI Job Search Assistant',
 		desc: 'Cross-platform AI job search engine with ATS resume analysis and tailored cover letter generation.',
 		details: 'A feature-rich job search engine that integrates multiple platforms (including Telegram channels) to find roles tailored to a user’s resume. It analyzes ATS compatibility, generates personalized cover letters based on job descriptions, and provides career-boosting insights — making the job hunt smarter and faster.',
@@ -55,6 +90,36 @@ function ProjectCard({ project, index, onOpen }) {
 			transition={{ duration: 0.5, delay: index * 0.05 }}
 			className={`group relative w-full text-left rounded-2xl border border-white/10 overflow-hidden backdrop-blur-sm bg-gradient-to-br ${project.accent[0]} ${project.accent[1]} hover:border-white/20`}
 		>
+			{/* Featured Badge */}
+			{project.featured && (
+				<div className="absolute top-0 right-0 z-10">
+					<motion.div 
+						className="relative"
+						initial={{ x: 20, opacity: 0 }}
+						whileInView={{ x: 0, opacity: 1 }}
+						transition={{ delay: index * 0.1 + 0.3 }}
+					>
+						<div className="relative overflow-hidden">
+							{/* Animated background shimmer */}
+							<motion.div 
+								className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+								animate={{ x: ['-200%', '200%'] }}
+								transition={{ duration: 3, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
+							/>
+							{/* Badge content */}
+							<div className="relative px-4 py-1.5 bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-500 rounded-bl-xl rounded-tr-xl shadow-lg">
+								<div className="flex items-center gap-1.5">
+									<svg className="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 20 20">
+										<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+									</svg>
+									<span className="text-xs font-bold text-black tracking-wide uppercase">Featured</span>
+								</div>
+							</div>
+						</div>
+					</motion.div>
+				</div>
+			)}
+			
 			{/* Decorative cover */}
 			<div className="relative h-40 overflow-hidden">
 				<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.15),transparent_40%)]" />
